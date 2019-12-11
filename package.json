@@ -1,0 +1,42 @@
+{
+  "name": "storyblok-blog",
+  "version": "1.0.0",
+  "description": "Awesome blog",
+  "author": "takawira Mundure",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.0.0",
+    "@nuxtjs/dotenv": "^1.4.1",
+    "ajv": "^6.10.2",
+    "bootstrap-vue": "^2.1.0",
+    "dotenv": "^8.2.0",
+    "ionicons": "^4.6.3",
+    "jquery": "^3.4.1",
+    "jquery-hoverintent": "^1.10.1",
+    "jquery.easing": "^1.4.1",
+    "magnific-popup": "^1.1.0",
+    "nuxt": "^2.10.2",
+    "nuxt-fontawesome": "^0.4.0",
+    "sass": "^1.23.7",
+    "storyblok-nuxt": "^1.0.2",
+    "superfish": "^1.7.10"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "cross-env": "^5.0.1",
+    "css-loader": "^3.2.1",
+    "eslint": "^4.15.0",
+    "eslint-loader": "^2.1.2",
+    "eslint-plugin-vue": "^4.0.0",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^8.0.0"
+  }
+}
