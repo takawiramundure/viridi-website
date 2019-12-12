@@ -1,29 +1,31 @@
 <template>
-  <div>
+  <section v-editable="blok">
     <!-- start intro section-slider -->
-    <home-intro />
+    <!-- <home-intro /> -->
     <!-- #intro -->
-    <about />
+    <about
+    :blok="blok"
+    :about_title="about_title"/>
     <!-- #about -->
-    <features />
+    <!-- <features /> -->
     <!-- #features -->
     <!-- <advanced-features /> -->
     <!-- #advanced-features -->
-    <call-to-action />
+    <!-- <call-to-action /> -->
     <!-- #call-to-action -->
-    <more-features />
+    <!-- <more-features /> -->
     <!-- #more-features -->
-    <clients />
+    <!-- <clients /> -->
     <!-- #more-features -->
-    <products />
+    <!-- <products /> -->
     <!-- #pricing -->
-    <faq />
+    <!-- <faq /> -->
     <!-- #faq -->
-    <team />
+    <!-- <team /> -->
     <!-- #team -->
     <!-- <gallery /> -->
     <!-- #gallery -->
-    <contact />
+    <!-- <contact /> -->
     <!-- #contact -->
     <!-- <section id="posts">
       <post-preview
@@ -34,48 +36,44 @@
         :thumbnailImage="post.thumbnailUrl"
         :id="post.id"
       />
-    </section> -->
+    </section>-->
     <!-- #blog -->
-  </div>
+  </section>
 </template>
 
 <script>
 // import PostPreview from "@/components/Blog/PostPreview";
 
 export default {
-  data() {
-    return {
-      posts: [
-        {
-          title: "A New Beginning",
-          previewText: "This will be awesome, don't miss it!",
-          thumbnailUrl:
-            "http://www.healthyfood.co.uk/wp-content/uploads/2015/01/Cherry-tomato-bocc-olive-basil-pasta.jpg",
-          id: "a-new-beginning"
-        },
-        {
-          title: "A Second Beginning",
-          previewText: "This will be awesome, don't miss it!",
-          thumbnailUrl:
-            "http://www.healthyfood.co.uk/wp-content/uploads/2015/01/Cherry-tomato-bocc-olive-basil-pasta.jpg",
-          id: "a-second-beginning"
-        },
-        {
-          title: "A Second Beginning",
-          previewText: "This will be awesome, don't miss it!",
-          thumbnailUrl:
-            "http://www.healthyfood.co.uk/wp-content/uploads/2015/01/Cherry-tomato-bocc-olive-basil-pasta.jpg",
-          id: "a-second-beginning"
-        },
-        {
-          title: "A Second Beginning",
-          previewText: "This will be awesome, don't miss it!",
-          thumbnailUrl:
-            "http://www.healthyfood.co.uk/wp-content/uploads/2015/01/Cherry-tomato-bocc-olive-basil-pasta.jpg",
-          id: "a-second-beginning"
+  asyncData(context) {
+    // Check if we are in the editor mode
+    let version =
+      context.query._storyblok || context.isDev ? "draft" : "published";
+
+    // Load the JSON from the API
+    return context.app.$storyapi
+      .get("cdn/stories/home", {
+        version: version
+      })
+      .then(res => {
+        // console.log('tag', res)
+        return {
+          blok: res.data.story.content,
+          about_title: res.data.story.content.about_title
         }
-      ]
-    };
+      })
+      .catch(res => {
+        context.error({
+          statusCode: res.response.status,
+          message: res.response.data
+        })
+      })
+  },
+  mounted() {
+    // this.$storybridge.init()
+    this.$storybridge.on("change", () => {
+      location.reload(true)
+    })
   }
 };
 </script>
