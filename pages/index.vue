@@ -56,7 +56,7 @@ export default {
         version: "published"
       })
       .then(res => {
-        console.log('tag', res)
+        // console.log('tag', res)
         return {
           blok: res.data.story.content,
           about_title: res.data.story.content.about_title
