@@ -1,10 +1,9 @@
 <template>
   <section v-editable="blok">
     <!-- start intro section-slider -->
-    <!-- <home-intro /> -->
+    <home-intro />
     <!-- #intro -->
     <about
-    :blok="blok"
     :about_title="about_title"/>
     <!-- #about -->
     <!-- <features /> -->
@@ -45,18 +44,19 @@
 // import PostPreview from "@/components/Blog/PostPreview";
 
 export default {
+  data() {
+    return {
+      about_title: 'Viridi Solutions (Private) Limited'
+    }
+  },
   asyncData(context) {
-    // Check if we are in the editor mode
-    let version =
-      context.query._storyblok || context.isDev ? "draft" : "published";
-
     // Load the JSON from the API
     return context.app.$storyapi
       .get("cdn/stories/home", {
-        version: version
+        version: "published"
       })
       .then(res => {
-        // console.log('tag', res)
+        console.log('tag', res)
         return {
           blok: res.data.story.content,
           about_title: res.data.story.content.about_title
@@ -71,9 +71,9 @@ export default {
   },
   mounted() {
     // this.$storybridge.init()
-    this.$storybridge.on("change", () => {
-      location.reload(true)
-    })
+    // this.$storybridge.on("change", () => {
+    //   location.reload(true)
+    // })
   }
 };
 </script>
