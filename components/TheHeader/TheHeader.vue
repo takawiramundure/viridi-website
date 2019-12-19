@@ -29,9 +29,6 @@
         <nuxt-link to="#contact" tag="li" class="nav-link">
           <a>Contact Us</a>
         </nuxt-link>
-        <nuxt-link to="/about" tag="li" class="nav-link">
-          <a>AboutPage</a>
-        </nuxt-link>
       </ul>
     </nav>
   </header>
