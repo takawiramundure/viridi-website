@@ -1,7 +1,7 @@
 <template>
   <section v-editable="blok">
     <!-- start intro section-slider -->
-    <home-intro />
+    <!-- <home-intro /> -->
     <!-- #intro -->
     <about
     :about_title="about_title"/>
